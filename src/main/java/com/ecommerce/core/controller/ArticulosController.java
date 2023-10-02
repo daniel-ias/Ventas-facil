@@ -11,6 +11,7 @@ import java.util.List;
 
 @org.springframework.web.bind.annotation.RestController
 @RequestMapping("/catalogo")
+@CrossOrigin(origins = "*")
 public class ArticulosController {
     private ArticuloService articuloService;
 
