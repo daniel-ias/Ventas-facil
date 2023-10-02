@@ -1,0 +1,33 @@
+<div class="container" style="margin-top: 4%;">
+    <h1 style="color: black; text-align: center;"> Lista de servicios </h1>
+    <button role="button" (click)="redirect()"  class="btn btn-dark" style="margin-left: 42%;">Regresar al formulario</button>
+    <button role="button" (click)="home()" class="btn btn-dark" style="margin-left: 43.5%; margin-top: 3px; margin-bottom: 3px;">Regresar al home</button>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Código</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Unidad de medida</th>
+        <th scope="col">Frecuencia</th>
+        <th scope="col">Fecha de registro</th>
+        <th scope="col">Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let servicio of servicios">
+        <th scope="row"> {{ servicio.id }} </th>
+        <td>{{ servicio.codigo }}</td>
+        <td>{{ servicio.nombre }}</td>
+        <td>{{ servicio.descripcion }}</td>
+        <td>{{ servicio.precio }}$</td>
+        <td>{{ servicio.unidadMedida }}</td>
+        <td>{{ servicio.frecuencia }}</td>
+        <td>{{ servicio.fechaRegistro }}</td>
+        <td><button (click)="delete(servicio)" class="btn btn-danger">Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
