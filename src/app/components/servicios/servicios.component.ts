@@ -23,6 +23,7 @@ export class ServiciosComponent implements OnInit{
   delete(servicio: Servicio) {
     this.serviciosService.delete(servicio.id).subscribe(result => {
       this.serviciosService.getAll().subscribe(response => {
+        window.alert('Servicio eliminado');
         this.servicios = response;
       })
     });
@@ -34,6 +35,14 @@ export class ServiciosComponent implements OnInit{
 
   home() {
     this.router.navigate(['/home']);
+  }
+
+  redirectEdit(servicio: Servicio) {
+    if (servicio && servicio.id !== undefined) {
+      this.router.navigate(['servicios/form-servicios', servicio.id]);
+    } else {
+      console.error('ID de servicio no válido:', servicio);
+    }
   }
 
 }

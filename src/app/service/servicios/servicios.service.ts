@@ -8,23 +8,28 @@ import { Servicio } from 'src/app/models/servicio.model';
 })
 export class ServiciosService {
 
-  private urlGet = 'http://localhost:8080/servicios/listar';
-  private urlCreate = 'http://localhost:8080/servicios/guardar';
-  private urlDelete = 'http://localhost:8080/servicios/eliminar';
+  private baseUrl = 'http://localhost:8080/servicios';
 
   constructor(private http: HttpClient) { }
 
   getAll() : Observable<Servicio[]> {
-    return this.http.get<Servicio[]>(this.urlGet);
+    return this.http.get<Servicio[]>(`${this.baseUrl}/listar`);
+  }
+
+  get(id: number): Observable<Servicio> {
+    return this.http.get<Servicio>(`${this.baseUrl}/consultaId/${id}`);
+  }
+
+  update(id: number, servicio: Servicio) : Observable<Servicio> {
+    return this.http.put<Servicio>(`${this.baseUrl}/actualizar/${id}`, servicio);
   }
 
   create(servicio: Servicio) : Observable<Servicio> {
-    return this.http.post<Servicio>(this.urlCreate, servicio);
+    return this.http.post<Servicio>(`${this.baseUrl}/guardar`, servicio);
   }
 
   delete(id: number) : Observable<Servicio> {
-    return this.http.delete<Servicio>(this.urlDelete+'/'+id);
+    return this.http.delete<Servicio>(`${this.baseUrl}/eliminar/${id}`);
   }
 
-  
 }

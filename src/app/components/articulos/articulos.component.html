@@ -13,6 +13,7 @@
         <th scope="col">Marca</th>
         <th scope="col">Modelo</th>
         <th scope="col">Fecha de registro</th>
+        <th scope="col">Editar</th>
         <th scope="col">Eliminar</th>
       </tr>
     </thead>
@@ -26,7 +27,8 @@
         <td>{{ articulo.marca }}</td>
         <td>{{ articulo.modelo }}</td>
         <td>{{ articulo.fechaRegistro }}</td>
-        <td><button (click)="delete(articulo)" class="btn btn-danger">Eliminar</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="redirectEdit(articulo)">Editar</button></td>
+        <td><button type="button" (click)="delete(articulo)" class="btn btn-danger">Eliminar</button></td>
       </tr>
     </tbody>
   </table>

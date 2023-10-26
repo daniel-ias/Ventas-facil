@@ -23,6 +23,7 @@ export class ArticulosComponent implements OnInit{
   delete(articulo: Articulo) {
     this.articuloService.delete(articulo.id).subscribe(result => {
       this.articuloService.getAll().subscribe(response => {
+        window.alert('Articulo eliminado');
         this.articulos = response;
       })
     });
@@ -34,6 +35,14 @@ export class ArticulosComponent implements OnInit{
 
   home() {
     this.router.navigate(['/home']);
+  }
+
+  redirectEdit(articulo: Articulo) {
+    if (articulo && articulo.id !== undefined) {
+      this.router.navigate(['articulos/form', articulo.id]);
+    } else {
+      console.error('ID de artículo no válido:', articulo);
+    }
   }
 
 }

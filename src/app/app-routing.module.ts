@@ -12,9 +12,11 @@ const routes: Routes = [
    { path: 'articulos', redirectTo: '/articulos', pathMatch: 'full'},
    { path: 'articulos', component: ArticulosComponent },
    { path: 'articulos/form', component: FormComponent },
+   { path: 'articulos/form/:id', component: FormComponent },
    { path: 'servicios', redirectTo: '/servicios', pathMatch: 'full'},
    { path: 'servicios', component: ServiciosComponent },
    { path: 'servicios/form-servicios', component: FormServiciosComponent },
+   { path: 'servicios/form-servicios/:id', component: FormServiciosComponent },
 ];
 
 @NgModule({

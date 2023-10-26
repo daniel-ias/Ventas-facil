@@ -1,50 +1,155 @@
-<div class="container" style="margin-top: 4%;">
-    <h1 style="color: black; text-align: center;"> Crear articulo </h1>
-    <form style="margin-left: 8%;">
-        <div class="form-group row">
-            <label for="codigo" class="col-sm-3 col-form-label">Código:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="codigo" required="true" [(ngModel)]="articulo.codigo" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="codigo" class="col-sm-3 col-form-label">Nombre:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="codigo" required="true" [(ngModel)]="articulo.nombre" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="descripcion" class="col-sm-3 col-form-label">Descripción:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="descripcion" required="true" [(ngModel)]="articulo.descripcion" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="precio" class="col-sm-3 col-form-label">Precio:</label>
-            <div class="col-sm-5">
-              <input type="number" class="form-control" id="precio" required="true" [(ngModel)]="articulo.precio" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="marca" class="col-sm-3 col-form-label">Marca:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="marca" required="true" [(ngModel)]="articulo.marca" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="modelo" class="col-sm-3 col-form-label">Modelo:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="modelo" required="true" [(ngModel)]="articulo.modelo" [ngModelOptions]="{standalone: true}">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="fechaRegistro" class="col-sm-3 col-form-label">Fecha de registro:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" id="fecha" required="true"
-               [(ngModel)]="articulo.fechaRegistro" [ngModelOptions]="{standalone: true}" placeholder="año-mes-día (00-00-00)">
-            </div>
-          </div>
-          <button role="button" (click)="create()" class="btn btn-dark" style="margin-left: 34%;">Guardar</button>
-          <button role="button" (click)="redirect()" class="btn btn-dark" style="margin-left: 0.5%;">Imprimir articulos</button>
-      </form>
+<div class="container" style="margin-top: 4%">
+  <h1 style="color: black; text-align: center" *ngIf="!modoEdicion">
+    Crear articulo
+  </h1>
+  <h1 style="color: black; text-align: center" *ngIf="modoEdicion">
+    Actualizar articulo
+  </h1>
+  <form style="margin-left: 8%">
+    <div class="form-group row" *ngIf="modoEdicion">
+      <label for="codigo" class="col-sm-3 col-form-label">Id:</label>
+      <div class="col-sm-5">
+        <input
+          type="number"
+          class="form-control"
+          id="id"
+          required="true"
+          [(ngModel)]="articulo.id"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="codigo" class="col-sm-3 col-form-label">Código:</label>
+      <div class="col-sm-5">
+        <input
+          type="text"
+          class="form-control"
+          id="codigo"
+          required="true"
+          [(ngModel)]="articulo.codigo"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="codigo" class="col-sm-3 col-form-label">Nombre:</label>
+      <div class="col-sm-5">
+        <input
+          type="text"
+          class="form-control"
+          id="codigo"
+          required="true"
+          [(ngModel)]="articulo.nombre"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="descripcion" class="col-sm-3 col-form-label"
+        >Descripción:</label
+      >
+      <div class="col-sm-5">
+        <input
+          type="text"
+          class="form-control"
+          id="descripcion"
+          required="true"
+          [(ngModel)]="articulo.descripcion"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="precio" class="col-sm-3 col-form-label">Precio:</label>
+      <div class="col-sm-5">
+        <input
+          type="number"
+          class="form-control"
+          id="precio"
+          required="true"
+          [(ngModel)]="articulo.precio"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="marca" class="col-sm-3 col-form-label">Marca:</label>
+      <div class="col-sm-5">
+        <input
+          type="text"
+          class="form-control"
+          id="marca"
+          required="true"
+          [(ngModel)]="articulo.marca"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="modelo" class="col-sm-3 col-form-label">Modelo:</label>
+      <div class="col-sm-5">
+        <input
+          type="text"
+          class="form-control"
+          id="modelo"
+          required="true"
+          [(ngModel)]="articulo.modelo"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="fechaRegistro" class="col-sm-3 col-form-label"
+        >Fecha de registro:</label
+      >
+      <div class="col-sm-5">
+        <input
+          type="text"
+          class="form-control"
+          id="fecha"
+          required="true"
+          [(ngModel)]="articulo.fechaRegistro"
+          [ngModelOptions]="{ standalone: true }"
+          placeholder="año-mes-día (00-00-00)"
+        />
+      </div>
+    </div>
+
+    <button
+      role="button"
+      (click)="create()"
+      class="btn btn-dark"
+      style="margin-left: 34%"
+      *ngIf="!modoEdicion"
+    >
+      Guardar
+    </button>
+    <button
+      role="button"
+      (click)="redirect()"
+      class="btn btn-dark"
+      style="margin-left: 0.5%"
+      *ngIf="!modoEdicion"
+    >
+      Imprimir articulos
+    </button>
+    <button
+      role="button"
+      (click)="update(articulo.id, articulo)"
+      class="btn btn-dark"
+      *ngIf="modoEdicion"
+    >
+      Actualizar
+    </button>
+    <button
+      role="button"
+      (click)="redirect()"
+      class="btn btn-dark"
+      style="margin-left: 0.5%"
+      *ngIf="modoEdicion"
+    >
+      Regresar
+    </button>
+  </form>
 </div>
